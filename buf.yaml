@@ -1,4 +1,4 @@
 version: v2
 modules:
   - path: .
-    name: buf.build/meimeitou/common
+    name: buf.build/meimeitou/grpc-common

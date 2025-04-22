@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package common.option;
+package grpc_common.auth.option;
 
-option go_package = "github.com/meimeitou/grpc-common/common;common";
+option go_package = "github.com/meimeitou/grpc-common/common/auth;auth";
 
 import "google/protobuf/descriptor.proto";
 

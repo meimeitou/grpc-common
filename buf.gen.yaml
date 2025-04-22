@@ -1,0 +1,14 @@
+version: v1
+managed:
+  enabled: true
+plugins:
+  # Use protoc-gen-go at v1.28.1
+  - plugin: buf.build/protocolbuffers/go:v1.36.5
+    out: .
+    opt: paths=source_relative
+  # Use the latest version of protoc-gen-go-grpc
+  - plugin: buf.build/grpc/go:v1.5.1
+    out: .
+    opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false
