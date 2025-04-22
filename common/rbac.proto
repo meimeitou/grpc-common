@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package common.option;
+
+option go_package = "github.com/meimeitou/grpc-common/common;common";
+
+import "google/protobuf/descriptor.proto";
+
+// 定义 RBAC 认证的扩展
+extend google.protobuf.MethodOptions {
+  RBACAuth rbac_auth = 50001;
+}
+
+message RBACAuth {
+  repeated Role roles = 1;
+}
+
+message Role {
+  string category = 1;
+  repeated string names = 2;
+}
