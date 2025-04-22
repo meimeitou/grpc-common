@@ -84,13 +84,9 @@ func (r *Registry) parseReqParam(param string) {
 	}
 	for _, p := range strings.Split(param, ",") {
 		spec := strings.SplitN(p, "=", 2)
-		if len(spec) > 1 {
-			switch spec[0] {
-			case "output_prefix":
+		if len(spec) == 2 {
+			if spec[0] == "output_prefix" {
 				r.outPrefix = spec[1]
-			default:
-				grpclog.Warningf("Unknown parameter: %s", spec[0])
-				os.Exit(1)
 			}
 		}
 	}
