@@ -17,7 +17,7 @@ import (
 
 var (
 	// Version is the version of the plugin.
-	Version = "0.0.0"
+	Version = "1.0.0"
 )
 
 var (
@@ -36,6 +36,10 @@ func main() {
 		if err != nil {
 			grpclog.Fatal(err)
 		}
+	}
+	if *version {
+		fmt.Printf("protoc-gen-auth-policy version: %s\n", Version)
+		return
 	}
 	req, err := ParseRequest(f)
 	if err != nil {
