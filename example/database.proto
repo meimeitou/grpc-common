@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "database/query.proto";
+
+option go_package = "./;example";
+option java_multiple_files = true;
+option java_package = "dev.api.example.v1";
+option java_outer_classname = "DataProtoV1";
+
+// The greeting service definition.
+service AppService {
+  rpc ListDemo (ListDemoRequest) returns (ListDemoReply) {
+    option (grpc_common.database.option.query) = {
+      ch_query: {
+        map_sql: {
+          key: "info",
+          value: "SELECT * FROM demo WHERE id = ?"
+        }
+        map_sql: {
+          key: "count",
+          value: "SELECT COUNT(*) FROM demo WHERE id = ?"
+        }
+      }
+    };
+  }
+}
+
+message CreateDemoRequest {}
+message CreateDemoReply {}
+
+message UpdateDemoRequest {}
+message UpdateDemoReply {}
+
+message DeleteDemoRequest {}
+message DeleteDemoReply {}
+
+message GetDemoRequest {}
+message GetDemoReply {}
+
+message ListDemoRequest {
+    repeated uint32 col1 = 1; // @gotags: ch:"col1"
+    string col2 = 2;
+    // @gotags: ch:"col6" tpl:"col6"
+    repeated string col6 = 3;
+}
+
+message ListDemoResponse {
+  uint32 col1 = 1; // @gotags: ch:"col1"
+  string col2 = 2; // @gotags: ch:"col2"
+  uint32 col3 = 3; // @gotags: ch:"col3"
+  repeated uint32 col4 = 4; // @gotags: ch:"col4"
+  string col5 = 5; // @gotags: ch:"col5"
+  string col6= 6; // @gotags: ch:"col6"
+}
+
+message ListDemoReply {
+  repeated ThreatEventTopNInfo info = 1;
+  uint64 count = 2;
+}
+
+message ThreatEventTopNInfo {
+  uint32 severity_level = 1; // 威胁等级
+  string severity_name = 2; // 威胁等级名
+  string malicious_type = 3; // 威胁类型 大类
+  string malicious_type_name = 4; // 威胁类型名
+  string group = 5;
+  string group_name = 6;
+  string family = 7;
+  string family_name = 8;
+  string operation = 9;
+  string operation_name = 10;
+  uint64 count = 11;
+  repeated string ip = 12; // ip
+}
