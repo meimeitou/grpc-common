@@ -237,14 +237,7 @@ func (b *Binding) ValidQuery() error {
 }
 
 func (b *Binding) validQueryOption(q *database.QueryDefine) error {
-	if q != nil {
-		if q.Sql == "" && len(q.SqlMap) == 0 {
-			return fmt.Errorf("sql is empty from %s.%s", b.Method.Service.GetName(), b.Method.GetName())
-		}
-		if q.Sql != "" && len(q.SqlMap) > 0 {
-			return fmt.Errorf("sql and single_sql is not allowed at the same time from %s.%s", b.Method.Service.GetName(), b.Method.GetName())
-		}
-	}
+
 	return nil
 }
 
