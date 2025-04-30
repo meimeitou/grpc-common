@@ -14,7 +14,7 @@ service AppService {
   rpc ListDemo (ListDemoRequest) returns (ListDemoReply) {
     option (grpc_common.database.option.query) = {
       ch_query: {
-        map_sql: {
+        sql_key_map: {
           key: "info",
           value: "SELECT * FROM demo WHERE id = ?"
         }
